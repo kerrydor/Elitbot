@@ -1,0 +1,42 @@
+{
+  "name": "elitbot",
+  "version": "1.0.0",
+  "description": "Production-ready Telegram bot for ElitWin with webhook architecture",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "migrate": "node dist/database/migrate.js",
+    "deploy": "npm run build && npm run migrate && pm2 restart elitbot || pm2 start dist/index.js --name elitbot",
+    "deploy:script": "./script/deploy.sh"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "webhook",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "node-telegram-bot-api": "^0.64.0",
+    "pg": "^8.11.3",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.19.27",
+    "@types/node-telegram-bot-api": "^0.64.0",
+    "@types/pg": "^8.10.9",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
